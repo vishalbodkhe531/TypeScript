@@ -17,3 +17,4 @@ var myClient = {
     email: "ram@gmail.com",
     isActive: false,
 };
+myClient.email = "rama@gmail.com";

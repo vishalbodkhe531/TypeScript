@@ -52,4 +52,86 @@ const HandleError = (errMsg: string): never => {
   throw new Error(errMsg);
 };
 
-export {};
+//-----------------------------------------------------------------------------------------------//
+
+type Data = (firstNo: number, secoundNo: number, thirdNo?: number) => number;
+
+const result: Data = (x, y, z = 10) => {
+  if (!z) return x + y;
+  return x + y + z;
+};
+
+console.log(result(12, 20, 12));
+console.log(result(1, 2));
+
+//---------------------------Rest Oparator--------------------------------------------------------//
+
+const Data2 = (...x: number[]) => {
+  console.log(x);
+};
+
+Data2(1, 2, 3, 4, 5, 6, 7);
+
+//best syntax
+type Data3 = (...x: number[]) => number[];
+
+const result2: Data3 = (...y) => {
+  return y;
+};
+
+result2(1, 2, 3, 4);
+
+console.log(result2(1, 2, 3, 4));
+
+//----------------------------------Function with objects----------------------------------------//
+
+type getDataType = (product: {
+  name: string;
+  stock: number;
+  price: number;
+  photo: string;
+}) => void;
+const getData: getDataType = (product): void => {
+  console.log(product);
+};
+
+const productOne = {
+  name: "Macbook",
+  stock: 54,
+  price: 100000,
+  photo: "sample_photo_url",
+};
+
+getData(productOne);
+
+// best syntax
+
+interface products {
+  readonly _id: number;
+  name: string;
+  stock: number;
+  price: number;
+  photo: string;
+}
+
+type getProducts = (product: products) => void;
+
+const func: getProducts = (product) => {
+  console.log(product);
+};
+
+const passData: products = {
+  _id: 1,
+  name: "Macbook",
+  stock: 54,
+  price: 100000,
+  photo: "sample_photo_url",
+};
+
+console.log(passData);
+
+//------------------------------------------Never Type-------------------------------------------//
+
+const err = (): never => {
+  throw new Error();
+};
